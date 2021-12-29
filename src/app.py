@@ -12,6 +12,7 @@ bot_chatID = environ.get("chat_id")
 
 def notify_channel(alertname, symbol, payload):
     bot_message = f"*Trendspider Alert*: `{symbol}` {alertname} - {payload}"
+    print(bot_message)
     telegram_url = f"https://api.telegram.org/bot{bot_token}/"
     message = f'sendMessage?chat_id={bot_chatID}&parse_mode=Markdown&text={bot_message}'
 
@@ -24,7 +25,6 @@ def notify_channel(alertname, symbol, payload):
 
 @app.route('/robot/ts/trigger', methods=['POST'])  # Create main page of web-application
 def ts_trigger():
-
     securekey = request.args.get('secure_key')
     alertname = request.args.get('name')
     symbol = request.args.get('symbol')

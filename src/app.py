@@ -42,8 +42,8 @@ def ts_trigger():
     return f"Welcome to my API! - {payload}/{symbol}"
 
 
-# if __name__ == '__main__':
-notify_channel("", "success", "Trendspider chart notifier installed")
 print(f"starting app: [{__name__}]")
-app.run(port=80)
-print("why did it exit?")
+if __name__ == '__main__':
+    notify_channel("", "success", "Trendspider chart notifier installed")
+    app.run(port=8000)
+    print("why did it exit?")

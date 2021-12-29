@@ -2,7 +2,6 @@ import requests
 from os import environ
 import json
 from flask import Flask, request
-from telegram.ext import Updater
 
 app = Flask(__name__)
 

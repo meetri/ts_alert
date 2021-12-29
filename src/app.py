@@ -1,18 +1,19 @@
 import requests
+from os import environ
 import json
 from flask import Flask, request
 from telegram.ext import Updater
 
 app = Flask(__name__)
 
-SECURE_KEY = "abc123"
+SECURE_KEY = environ.get("secure_key", "abc123")
 
 
 def notify_channel(symbol, payload):
     print(symbol)
     print(payload)
-    bot_token = '5004489343:AAHmbAFnMzExhHJwtzWVLBKmabo-C-y4Zw4'
-    bot_chatID = '-1001529660073'
+    bot_token = environ.get("bot_token")
+    bot_chatID = environ.get("chat_id")
 
     bot_message = f"*Trendspider Alert*: `{symbol}` : {payload}"
     telegram_url = f"https://api.telegram.org/bot{bot_token}/"
@@ -44,5 +45,5 @@ def ts_trigger():
 
 
 if __name__ == '__main__':
-    notify_channel("ABC123", "and the sky is the moon")
+    notify_channel("INSTALLED", "Trendspider notifier installed")
     app.run()

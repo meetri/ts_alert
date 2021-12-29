@@ -34,7 +34,7 @@ def ts_trigger():
     if request.is_json:
         payload = request.get_json()
     else:
-        payload = json.loads(request.get_data(as_text=True))
+        payload = request.get_data(as_text=True)
 
     if securekey == SECURE_KEY:
         notify_channel(symbol, payload)

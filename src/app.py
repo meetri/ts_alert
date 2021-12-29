@@ -9,6 +9,9 @@ SECURE_KEY = environ.get("secure_key")
 bot_token = environ.get("bot_token")
 bot_chatID = environ.get("chat_id")
 
+print(bot_token)
+print(bot_chatID)
+
 
 def notify_channel(alertname, symbol, payload):
     bot_message = f"*Trendspider Alert*: `{symbol}` {alertname} - {payload}"

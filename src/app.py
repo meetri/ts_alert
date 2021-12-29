@@ -43,7 +43,7 @@ def ts_trigger():
 
 
 print(f"starting app: [{__name__}]")
-if __name__ == '__main__':
+if __name__ == 'app':
     notify_channel("", "success", "Trendspider chart notifier installed")
     app.run()
     print("why did it exit?")

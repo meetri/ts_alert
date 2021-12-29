@@ -8,6 +8,7 @@ app = Flask(__name__)
 SECURE_KEY = environ.get("secure_key")
 bot_token = environ.get("bot_token")
 bot_chatID = environ.get("chat_id")
+PORT = environ.get("PORT")
 
 
 def notify_channel(alertname, symbol, payload):
@@ -42,8 +43,8 @@ def ts_trigger():
     return f"Welcome to my API! - {payload}/{symbol}"
 
 
-print(f"starting app: [{__name__}]")
+print(f"starting app: [{__name__}]:{PORT}")
 if __name__ == '__main__':
     notify_channel("", "success", "Trendspider chart notifier installed")
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=PORT)
     print("why did it exit?")

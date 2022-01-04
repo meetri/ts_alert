@@ -54,7 +54,7 @@ def parse_landbot():
                 {"text": buttons[idx], "callback_data": callbacks[idx]}
              )
             if len(krow) == max_columns:
-                keyboards.append(krow)
+                keyboards.append(krow.copy())
                 krow.clear()
 
         if len(krow):

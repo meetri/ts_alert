@@ -44,9 +44,9 @@ def parse_landbot():
     payload = request.get_json()
 
     out = []
-    for message in payload["messages"]:
-        buttons = message["buttons"]
-        callbacks = message["payloads"]
+    for message in payload.get("messages", []):
+        buttons = message.get("buttons", [])
+        callbacks = message.get("payloads", [])
         keyboard = []
         for idx in enumerate(buttons):
             keyboard.append(
@@ -60,7 +60,7 @@ def parse_landbot():
             ]
         })
 
-        return json.dumps(payload)
+    return json.dumps(payload)
 
 
 @app.route('/', methods=['GET'])  # Create main page of web-application

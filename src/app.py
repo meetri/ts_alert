@@ -47,7 +47,7 @@ def parse_landbot():
         buttons = message.get("buttons", [])
         callbacks = message.get("payloads", [])
         keyboards = []
-        for _, idx in enumerate(buttons):
+        for idx, _ in enumerate(buttons):
             keyboards.append(
                 {"text": buttons[idx], "callback_data": callbacks[idx]}
              )

@@ -39,12 +39,20 @@ def notify_channel(alertname, symbol, payload):
     return r
 
 
+@app.route('/landbot/parse_incoming', methods=['POST'])
+def parse_landbot():
+    payload = request.get_json()
+    return json.dumps({
+        "payload": payload,
+    })
+
+
 @app.route('/', methods=['GET'])  # Create main page of web-application
 def greeting():
-    return f"Hello"
+    return "Hello"
 
 
-@app.route('/robot/ts/trigger', methods=['POST'])  # Create main page of web-application
+@app.route('/robot/ts/trigger', methods=['POST'])
 def ts_trigger():
     securekey = request.args.get('secure_key')
     alertname = request.args.get('name')

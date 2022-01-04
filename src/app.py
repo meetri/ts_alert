@@ -43,22 +43,23 @@ def notify_channel(alertname, symbol, payload):
 def parse_landbot():
     payload = request.get_json()
 
-    out = []
     for message in payload.get("messages", []):
         buttons = message.get("buttons", [])
         callbacks = message.get("payloads", [])
-        keyboard = []
-        for idx in enumerate(buttons):
-            keyboard.append(
+        keyboards = []
+        for _, idx in enumerate(buttons):
+            keyboards.append(
                 {"text": buttons[idx], "callback_data": callbacks[idx]}
              )
 
-        out.append(keyboard)
-        message["inline_keyboard"] = json.dumps({
-            "inline_keyboard": [
-                out
-            ]
-        })
+        if len(keyboards):
+            message["inline_keyboard"] = json.dumps({
+                "inline_keyboard": [
+                    [
+                        keyboards
+                    ]
+                ]
+            })
 
     return json.dumps(payload)
 

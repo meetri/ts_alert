@@ -53,15 +53,15 @@ def parse_landbot():
              )
 
         if len(keyboards):
-            message["inline_keyboard"] = json.dumps({
+            message["inline_keyboard"] = {
                 "inline_keyboard": [
                     [
                         keyboards
                     ]
                 ]
-            })
+            }
 
-    return json.dumps(payload)
+    return payload
 
 
 @app.route('/', methods=['GET'])  # Create main page of web-application

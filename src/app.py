@@ -42,9 +42,25 @@ def notify_channel(alertname, symbol, payload):
 @app.route('/landbot/parse_incoming', methods=['POST'])
 def parse_landbot():
     payload = request.get_json()
-    return json.dumps({
-        "payload": payload,
-    })
+
+    out = []
+    for message in payload["messages"]:
+        buttons = message["buttons"]
+        callbacks = message["payloads"]
+        keyboard = []
+        for idx in enumerate(buttons):
+            keyboard.append(
+                {"text": buttons[idx], "callback_data": callbacks[idx]}
+             )
+
+        out.append(keyboard)
+        message["inline_keyboard"] = json.dumps({
+            "inline_keyboard": [
+                out
+            ]
+        })
+
+        return json.dumps(payload)
 
 
 @app.route('/', methods=['GET'])  # Create main page of web-application

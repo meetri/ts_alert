@@ -53,13 +53,13 @@ def parse_landbot():
              )
 
         if len(keyboards):
-            message["inline_keyboard"] = {
+            message["inline_keyboard"] = json.dumps({
                 "inline_keyboard": [
                     [
                         keyboards
                     ]
                 ]
-            }
+            })
 
     return payload
 
